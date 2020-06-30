@@ -1,0 +1,19 @@
+{
+  "name": "periodic-sync-example",
+  "version": "1.0.0",
+  "description": "Checking out the periodic background sync",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npx serve public"
+  },
+  "keywords": [
+    "pwa",
+    "service",
+    "worker"
+  ],
+  "author": "Felix Gerschau",
+  "license": "ISC",
+  "devDependencies": {
+    "serve": "^11.3.2"
+  }
+}
