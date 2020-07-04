@@ -22,6 +22,18 @@ self.addEventListener('install', (event) => {
   event.waitUntil(preCache());
 });
 
+self.addEventListener('periodicsync', (event) => {
+  if (event.tag === 'news') {
+    event.waitUntil(fetchNews());
+  }
+});
+
+self.addEventListener('message', (event) => {
+  if (event.data === 'update-news-cache') {
+    fetchAndCacheNews();
+  }
+});
+
 self.addEventListener('fetch', async (event) => {
   const getResponse = async () => {
     const response = await caches.match(event.request);

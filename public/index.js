@@ -30,6 +30,22 @@ const main = async () => {
       newsElement.appendChild(createArticleElement(article));
     });
   }
+
+  const registration = await navigator.serviceWorker.ready;
+  // Check if periodicSync is supported
+  if ('periodicSync' in registration) {
+    // Request permission
+    const status = await navigator.permissions.query({
+      name: 'periodic-background-sync',
+    });
+
+    if (status.state === 'granted') {
+      // Register new sync every 24 hours
+      registration.periodicSync.register('update-news-cache', {
+        minInterval: 24 * 60 * 60 * 1000, // 1 day
+      });
+    }
+  }
 };
 
 main();
