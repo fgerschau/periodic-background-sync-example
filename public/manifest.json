@@ -1,0 +1,19 @@
+{
+  "name": "Periodic Background Sync",
+  "short_name": "Periodic Sync",
+  "start_url": "/",
+  "background_color": "#fff",
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "/icon_192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon_512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
