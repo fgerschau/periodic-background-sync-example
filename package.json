@@ -4,7 +4,7 @@
   "description": "Checking out the periodic background sync",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npx serve public"
+    "start": "serve public"
   },
   "keywords": [
     "pwa",

@@ -1,5 +1,7 @@
+const apiKeyNews = 'API-KEY'; // replace with API key from newsapi.org
+
 const createArticleElement = (article) => {
-  const element = document.createElement('h2');
+  const element = document.createElement('h3');
   element.textContent = article.title;
   const linkElement = document.createElement('a');
   linkElement.href = article.url;
@@ -8,8 +10,12 @@ const createArticleElement = (article) => {
   return linkElement;
 };
 
+const setLastFetchedDate = (formattedTime) => {
+  const element = document.getElementById('last-fetched');
+  element.textContent = formattedTime;
+};
+
 const fetchNews = async () => {
-  const apiKeyNews = 'API-KEY'; // replace with API key from newsapi.org
   const url = `http://newsapi.org/v2/everything?q=bitcoin&sortBy=publishedAt&apiKey=${apiKeyNews}`;
   const response = await fetch(url)
   return response.json();
@@ -20,6 +26,9 @@ const main = async () => {
     navigator.serviceWorker.register('/service-worker.js');
   }
   const news = await fetchNews();
+  if (news.formattedTime) {
+    setLastFetchedDate(news.formattedTime);
+  }
 
   const articles = news.articles;
   if (articles && articles.length) {
