@@ -49,11 +49,20 @@ const main = async () => {
     });
 
     if (status.state === 'granted') {
-      // Register new sync every 24 hours
-      registration.periodicSync.register('update-news-cache', {
-        minInterval: 24 * 60 * 60 * 1000, // 1 day
-      });
+      try {
+        // Register new sync every 24 hours
+        await registration.periodicSync.register('news', {
+          minInterval: 24 * 60 * 60 * 1000, // 1 day
+        });
+        console.log('Periodic background sync registered!');
+      } catch(e) {
+        console.error(`Periodic background sync failed:\nx${e}`);
+      }
+    } else {
+      console.info('Periodic background sync is not granted.');
     }
+  } else {
+    console.log('Periodic background sync is not supported.');
   }
 };
 

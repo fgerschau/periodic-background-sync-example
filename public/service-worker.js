@@ -41,13 +41,8 @@ self.addEventListener('install', (event) => {
 
 self.addEventListener('periodicsync', (event) => {
   if (event.tag === 'news') {
-    event.waitUntil(fetchNews());
-  }
-});
-
-self.addEventListener('message', (event) => {
-  if (event.data === 'update-news-cache') {
-    fetchAndCacheNews();
+    console.log('Fetching news in the background!');
+    event.waitUntil(fetchAndCacheNews());
   }
 });
 
